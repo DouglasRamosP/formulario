@@ -50,6 +50,25 @@ function checkInputs() {
   } else {
     setSuccessFor(passwordConfirmationInput);
   }
+
+  const formControl = document.querySelectorAll(".form-control");
+
+  const formIsValid = [...formControl].every((formControl) => {
+    return formControl.className === "form-control success";
+  });
+
+  if (formIsValid) {
+    alert("Usuário cadatrado!!!");
+    userNameInput.value = "";
+    emailInput.value = "";
+    passwordInput.value = "";
+    passwordConfirmationInput.value = "";
+
+    setNormalFor(userNameInput);
+    setNormalFor(emailInput);
+    setNormalFor(passwordInput);
+    setNormalFor(passwordConfirmationInput);
+  }
 }
 
 function setErrorFor(input, message) {
@@ -68,6 +87,13 @@ function setSuccessFor(input) {
 
   // Adiciona a classe de sucesso
   formControl.className = "form-control success";
+}
+
+function setNormalFor(input) {
+  const formControl = input.parentElement;
+
+  // Adiciona a classe de sucesso
+  formControl.className = "form-control";
 }
 
 function isValidEmail(email) {
